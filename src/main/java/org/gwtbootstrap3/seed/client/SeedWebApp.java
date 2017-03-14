@@ -1,5 +1,7 @@
 package org.gwtbootstrap3.seed.client;
 
+import java.util.ArrayList;
+
 /*
  * #%L
  * GwtBootstrap3
@@ -33,15 +35,29 @@ import com.google.gwt.user.client.ui.Widget;
  * @author Steven Jardine
  * @author Joshua Godi
  */
-public class SeedWebApp extends Composite implements EntryPoint {
+public class SeedWebApp implements EntryPoint {
 
-    interface MyUiBinder extends UiBinder<Widget, SeedWebApp> {
-    }
+	public void onModuleLoad() {
+		Tabulation tabulation = new Tabulation();
 
-    private static MyUiBinder myUiBinder = GWT.create(MyUiBinder.class);
+		// RootPanel.get().add(myUiBinder.createAndBindUi(this));
+		
+		RootPanel.get("tabulation").add(tabulation);
 
-    public void onModuleLoad() {
-        RootPanel.get().add(myUiBinder.createAndBindUi(this));
-    }
+		Person personne = new Person();
+		personne.setFirstName("Arnold");
+		personne.setLastName("The Terminator");
+		ArrayList<Person> persons = new ArrayList<Person>();
+		persons.add(personne);
+
+		Person personne2 = new Person();
+		personne2.setFirstName("Donald");
+		personne2.setLastName("The blaireau");
+		ArrayList<Person> persons2 = new ArrayList<Person>();
+		persons2.add(personne2);
+
+		tabulation.setPersons(persons, persons2);
+		
+	}
 
 }
